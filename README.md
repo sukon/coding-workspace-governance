@@ -123,7 +123,6 @@ coding-workspace-governance/
 │   ├── AGENTS.workspace-policy.md
 │   └── TOOLS.md.template
 ├── references/
-│   ├── api_reference.md
 │   └── tools-registry-format.md
 └── scripts/
     ├── init_workspace.py
