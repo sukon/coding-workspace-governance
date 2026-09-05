@@ -5,7 +5,7 @@ Agent Skill for keeping coding repositories clean, reusable, and self-documentin
 It establishes a workspace policy built around four repository artifacts:
 
 - `tools/` - reusable developer, flashing, debugging, conversion, and build utilities
-- `test/` - tests, fixtures, mocks, and test-only scripts
+- `tests/` - tests, fixtures, mocks, and test-only scripts
 - `temp/` - disposable logs, traces, dumps, generated responses, and intermediate output
 - `TOOLS.md` - the project's tool/capability registry and usage guide
 
@@ -101,6 +101,16 @@ To also install a managed repository policy block into `AGENTS.md`:
 
 ```bash
 python <skill-dir>/scripts/init_workspace.py --root <repo-root> --install-agent-rules
+```
+
+A newly governed project uses:
+
+```text
+<repo-root>/
+├── tools/
+├── tests/
+├── temp/
+└── TOOLS.md
 ```
 
 ## Validate a project
