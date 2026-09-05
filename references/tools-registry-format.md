@@ -58,7 +58,7 @@ Use one entry per reusable capability or coherent multi-command tool.
 - Keep example commands executable and current.
 - Never include secrets. Refer to environment variable names instead.
 - Record external utilities too when their invocation is part of the repository workflow, such as a vendor programmer or debugger.
-- Register reusable test procedures even when the test implementation itself lives under `test/`.
+- Register reusable test procedures even when the test implementation itself lives under `tests/`.
 
 ## Good capability names
 
