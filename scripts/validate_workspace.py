@@ -130,7 +130,7 @@ def main() -> int:
         print(f"ERROR: workspace root does not exist or is not a directory: {root}")
         return 1
 
-    required = ["tools", "test", "temp", "TOOLS.md"]
+    required = ["tools", "tests", "temp", "TOOLS.md"]
     for rel in required:
         if not (root / rel).exists():
             add(findings, strict_level, f"Missing governance path: {rel}")
@@ -156,12 +156,12 @@ def main() -> int:
             if not is_new_status(code) or not is_test_name(rel):
                 continue
             parts = rel.parts
-            if not parts or parts[0] == "test":
+            if not parts or parts[0] == "tests":
                 continue
             add(
                 findings,
                 strict_level,
-                f"New test-like file is outside test/: {rel_text}. Preserve an established repository convention only when intentional.",
+                f"New test-like file is outside tests/: {rel_text}. Preserve an established repository convention only when intentional.",
             )
 
     tools_md = root / "TOOLS.md"
