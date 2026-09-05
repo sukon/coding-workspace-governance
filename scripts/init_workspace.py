@@ -63,7 +63,7 @@ def main() -> int:
     created = []
     existed = []
 
-    for rel in ("tools", "test", "temp", "temp/logs", "temp/responses", "temp/artifacts"):
+    for rel in ("tools", "tests", "temp", "temp/logs", "temp/responses", "temp/artifacts"):
         path = root / rel
         if path.exists():
             existed.append(rel + "/")
