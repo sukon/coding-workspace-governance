@@ -1,6 +1,6 @@
 ---
 name: coding-workspace-governance
-description: Enforce a clean, reusable coding workspace for repository-based development. Use when coding, adding features, creating helper scripts, writing or running tests, flashing firmware, debugging hardware, generating logs or intermediate responses, or introducing reusable developer tooling. Require tool discovery through TOOLS.md before creating or invoking tooling, prefer reuse or extension over duplication, keep reusable tools under tools/, test-only code under test/, disposable artifacts under temp/, update TOOLS.md whenever tool capabilities or usage change, and validate workspace hygiene before finishing.
+description: Enforce a clean, reusable coding workspace for repository-based development. Use when coding, adding features, creating helper scripts, writing or running tests, flashing firmware, debugging hardware, generating logs or intermediate responses, or introducing reusable developer tooling. Require tool discovery through TOOLS.md before creating or invoking tooling, prefer reuse or extension over duplication, keep reusable tools under tools/, test-only code under tests/, disposable artifacts under temp/, update TOOLS.md whenever tool capabilities or usage change, and validate workspace hygiene before finishing.
 ---
 
 # Coding Workspace Governance
@@ -11,14 +11,14 @@ Apply this policy while working inside a source repository. Treat it as an alway
 
 1. Search before creating.
    - Read `TOOLS.md` before creating a helper tool or before performing testing, flashing, hardware interaction, capture, conversion, packaging, or other repeatable developer operations.
-   - Search `tools/` and `test/` when `TOOLS.md` is missing, incomplete, or references a related capability.
+   - Search `tools/` and `tests/` when `TOOLS.md` is missing, incomplete, or references a related capability.
 2. Reuse before duplicating.
    - Prefer an existing documented command.
    - Otherwise extend an existing tool with an option or subcommand when that preserves a coherent interface.
    - Create a new tool only when existing functionality cannot reasonably absorb the new capability.
 3. Keep locations deterministic.
    - Put reusable developer utilities in `tools/`.
-   - Put test cases, test-only scripts, fixtures, mocks, and test data in `test/`.
+   - Put test cases, test-only scripts, fixtures, mocks, and test data in `tests/`.
    - Put disposable logs, captures, debug dumps, generated responses, scratch output, and intermediate artifacts in `temp/`.
    - Do not place agent-created helper scripts, tests, or temporary files in the repository root.
 4. Document with implementation.
@@ -31,9 +31,9 @@ Apply this policy while working inside a source repository. Treat it as an alway
 
 ## Scope and compatibility
 
-Apply these rules to files created or materially reorganized by the current task. Do not silently migrate a mature repository from an existing `tests/`, `scripts/`, or project-specific convention solely to satisfy this skill. If the repository already has an explicit higher-priority convention, preserve it and adapt the registry workflow to that convention unless the user specifically asks for migration.
+Apply these rules to files created or materially reorganized by the current task. Do not silently migrate a mature repository that already uses `test/`, `spec/`, `scripts/`, or another explicit project-specific convention solely to satisfy this skill. If the repository already has an explicit higher-priority convention, preserve it and adapt the registry workflow to that convention unless the user specifically asks for migration.
 
-Do not put production source code in `tools/`, `test/`, or `temp/` merely to satisfy directory rules.
+Do not put production source code in `tools/`, `tests/`, or `temp/` merely to satisfy directory rules.
 
 ## Task workflow
 
@@ -47,7 +47,7 @@ Before creating or invoking development tooling:
 
 1. Read repository instructions such as `AGENTS.md` when present.
 2. Read `TOOLS.md` when present.
-3. Search `tools/` and `test/` for related names, commands, protocols, device families, interfaces, file formats, and capabilities.
+3. Search `tools/` and `tests/` for related names, commands, protocols, device families, interfaces, file formats, and capabilities.
 4. Treat `TOOLS.md` as an index, not as proof that a tool is correct. Inspect the referenced implementation or `--help` output when execution details matter.
 
 If `TOOLS.md` does not exist and the task introduces reusable tooling or procedures, create it from `assets/TOOLS.md.template` or an equivalent structure before finishing.
@@ -60,12 +60,12 @@ Use this decision table:
 | --- | --- |
 | Production source/configuration | Existing project structure |
 | Reusable flashing/debug/conversion/build/developer utility | `tools/` |
-| Test case, test-only script, fixture, mock, golden data | `test/` |
+| Test case, test-only script, fixture, mock, golden data | `tests/` |
 | Reusable test harness used as a general developer utility | `tools/` and document the test entry points in `TOOLS.md` |
 | Log, trace, dump, capture, generated response, scratch file, intermediate output | `temp/` |
 | Final user-requested deliverable | User-requested or project-appropriate location |
 
-When uncertain whether code is a test or a reusable tool, ask: "Would a developer invoke this independently outside one specific test case?" If yes, prefer `tools/`; otherwise prefer `test/`.
+When uncertain whether code is a test or a reusable tool, ask: "Would a developer invoke this independently outside one specific test case?" If yes, prefer `tools/`; otherwise prefer `tests/`.
 
 ### 4. Reuse or extend before creating
 
@@ -114,7 +114,7 @@ When modifying an existing tool, update its existing entry instead of appending 
 Before reporting completion:
 
 1. Confirm newly created reusable helpers are under `tools/`.
-2. Confirm newly created test-only artifacts are under `test/`.
+2. Confirm newly created test-only artifacts are under `tests/`.
 3. Confirm disposable output is under `temp/`.
 4. Confirm new or changed reusable capabilities are reflected in `TOOLS.md`.
 5. Confirm commands shown in `TOOLS.md` match the implementation.
@@ -136,7 +136,7 @@ When the user asks to initialize or retrofit this policy into a repository, run:
 python <skill-dir>/scripts/init_workspace.py --root <repo-root>
 ```
 
-This creates missing `tools/`, `test/`, and `temp/` directories, creates `TOOLS.md` from the bundled template when missing, and ensures `temp/` is ignored by Git without overwriting existing files.
+This creates missing `tools/`, `tests/`, and `temp/` directories, creates `TOOLS.md` from the bundled template when missing, and ensures `temp/` is ignored by Git without overwriting existing files.
 
 Use `--install-agent-rules` only when the user wants the repository itself to carry these rules for coding agents. This appends a managed policy block to `AGENTS.md` without replacing existing repository instructions.
 
