@@ -1,0 +1,44 @@
+# Tool Registry
+
+This file is the authoritative index of reusable developer tools and repeatable project procedures.
+Before creating a helper script or running testing, flashing, debugging, capture, conversion, or packaging workflows, search this file first and reuse or extend an existing capability when practical.
+
+## Capability Index
+
+| Capability | Tool / Procedure | Path / Command | Notes |
+| --- | --- | --- | --- |
+| _Add capabilities here_ | | | |
+
+## Tools and Procedures
+
+<!--
+Entry template:
+
+### Capability or Tool Name
+
+**Purpose:** What problem this solves.
+
+**Path / command:** `tools/example.py`
+
+**Use when:**
+- Scenario 1
+- Scenario 2
+
+**Usage:**
+```bash
+python tools/example.py --help
+```
+
+**Inputs / arguments:**
+- `--example`: Meaning.
+
+**Outputs:**
+- Persistent outputs: document their project location.
+- Transient logs and scratch output: `temp/`.
+
+**Requirements:**
+- Runtime, vendor tool, programmer, adapter, or environment variable.
+
+**Notes / constraints:**
+- Important limitations and reuse guidance.
+-->
